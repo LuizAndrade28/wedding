@@ -35,8 +35,8 @@ class GuestsController < ApplicationController
   end
 
   def update
-  @wedding = Wedding.find(params[:wedding_id])
-  @guest = @wedding.guests.find(params[:id])
+    @wedding = Wedding.find(params[:wedding_id])
+    @guest = @wedding.guests.find(params[:id])
     respond_to do |format|
       if @guest.update(guest_params)
         format.json { render json: { status: :success, message: "Presença confirmada com sucesso!" } }

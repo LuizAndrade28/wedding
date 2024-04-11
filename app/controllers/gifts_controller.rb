@@ -8,9 +8,9 @@ class GiftsController < ApplicationController
     @order = Order.new
     case params[:sort_by]
     when "value_asc"
-      @gifts = @gifts.order(value: :asc)
+      @gifts = @gifts.order(value_cents: :asc)
     when "value_desc"
-      @gifts = @gifts.order(value: :desc)
+      @gifts = @gifts.order(value_cents: :desc)
     when "title_asc"
       @gifts = @gifts.order(title: :asc)
     when "title_desc"

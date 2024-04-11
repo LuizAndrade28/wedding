@@ -11,11 +11,11 @@ Gift.destroy_all
 puts "All records destroyed"
 
 # Create a new user and wedding
-couple_photo = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1711468309/Foto_casal_bphjdp.jpg")
-user_photo = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/foto_perfil.jpg")
+couple_photo = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1711468309/Projeto-wed/Foto_casal_bphjdp.jpg")
+user_photo = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860967/Projeto-wed/Perfil_evkqnx.jpg")
 user = User.new(
   email: "luiz@yahoo.com.br",
-  password: "123456",
+  password: "flamengo",
   first_name: "Luiz",
   last_name: "Andrade",
   phone: "21999999999"
@@ -54,60 +54,61 @@ tip2 = Tip.new(
 tip2.save!
 
 # Create a list of gifts
-# gift_file1 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/Jantar_Romantico_uoozia.jpg")
-# gift_file2 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/Jantar_Copa_ziu51e.jpg")
-# gift_file3 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/img_paris_iccenx.jpg")
-# gift_file4 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/img_balao_b1pras.jpg")
-# gift_file5 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/mergulho_com_os_Golfinhos_psat5u.jpg")
-# gift_file6 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/passeio_aventura_ebresz.jpg")
-# gift_file7 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/coliseu_cis2kk.jpg")
-# gift_file8 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/img_car_vrfoyd.jpg")
-# gift_file9 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/img_maldivas_h4o8jh.jpg")
-# gift_file10 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/img_arizona_b3532r.jpg")
-# gift_file11 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/safari_u0klfe.jpg")
-# gift_file12 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/presentes_x8c9kp.jpg")
-# gift_file13 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/praia_paradisiaca_pslfxo.jpg")
+gift_file1 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860711/Gifts/Jantar_Romanticopg_f4xhy0.jpg")
+gift_file2 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860706/Gifts/Jantar_Copa_y0stle.jpg")
+gift_file3 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860702/Gifts/img_paris_nxz0ag.jpg")
+gift_file4 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860695/Gifts/img_balao_k8syut.jpg")
+gift_file5 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860714/Gifts/mergulho_com_os_Golfinhos_iugmjw.jpg")
+gift_file6 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860729/Gifts/Viagem_ldxyz1.jpg")
+gift_file7 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860688/Gifts/coliseu_pheeqk.jpg")
+gift_file8 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860685/Gifts/aluguel_carro_od2qjj.jpg")
+gift_file9 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860698/Gifts/img_maldivas_zyfllj.jpg")
+gift_file10 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860691/Gifts/img_arizona_wzebzr.jpg")
+gift_file11 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860726/Gifts/safari_zkbeaa.jpg")
+gift_file12 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860722/Gifts/presentes_ascaiq.jpg")
+gift_file13 = URI.open("https://res.cloudinary.com/dtadfvhck/image/upload/v1712860718/Gifts/praia_paradisiaca_p5pt4m.jpg")
 
-# gift1 = Gift.new(title: "Jantar Romântico", category: "Jantar", value: 450, total_quota: 10, wedding_id: wedding.id)
-# gift1.photo.attach(io: gift_file1, filename: "", content_type: "image/png")
-# gift1.save!
-# gift2 = Gift.new(title: "Jantar no Copacabana Palace", category: "Jantar", value: 800, total_quota: 10, wedding_id: wedding.id)
-# gift2.photo.attach(io: gift_file2, filename: "", content_type: "image/png")
-# gift2.save!
-# gift3 = Gift.new(title: "Jantar em Paris", category: "Jantar", value: 1000, total_quota: 10, wedding_id: wedding.id)
-# gift3.photo.attach(io: gift_file3, filename: "", content_type: "image/png")
-# gift3.save!
-# gift4 = Gift.new(title: "Passeio de Balão", category: "Passeio", value: 750, total_quota: 10, wedding_id: wedding.id)
-# gift4.photo.attach(io: gift_file4, filename: "", content_type: "image/png")
-# gift4.save!
-# gift5 = Gift.new(title: "Mergulho com Golfinhos", category: "Passeio", value: 1200, total_quota: 10, wedding_id: wedding.id)
-# gift5.photo.attach(io: gift_file5, filename: "", content_type: "image/png")
-# gift5.save!
-# gift6 = Gift.new(title: "Passagem de lua de mel", category: "Viagem", value: 7000, total_quota: 10, wedding_id: wedding.id)
-# gift6.photo.attach(io: gift_file6, filename: "", content_type: "image/png")
-# gift6.save!
-# gift7 = Gift.new(title: "Passeio ao Coliseu", category: "Passeio", value: 1500, total_quota: 10, wedding_id: wedding.id)
-# gift7.photo.attach(io: gift_file7, filename: "", content_type: "image/png")
-# gift7.save!
-# gift8 = Gift.new(title: "Aluguel de carro", category: "Viagem", value: 2500, total_quota: 10, wedding_id: wedding.id)
-# gift8.photo.attach(io: gift_file8, filename: "", content_type: "image/png")
-# gift8.save!
-# gift9 = Gift.new(title: "Hospedagem em maldivas", category: "Viagem", value: 8500, total_quota: 10, wedding_id: wedding.id)
-# gift9.photo.attach(io: gift_file9, filename: "", content_type: "image/png")
-# gift9.save!
-# gift10 = Gift.new(title: "Hiking no Arizona", category: "Viagem", value: 5000, total_quota: 10, wedding_id: wedding.id)
-# gift10.photo.attach(io: gift_file10, filename: "", content_type: "image/png")
-# gift10.save!
-# gift11 = Gift.new(title: "Safari", category: "Viagem", value: 7999, total_quota: 10, wedding_id: wedding.id)
-# gift11.photo.attach(io: gift_file11, filename: "", content_type: "image/png")
-# gift11.save!
-# gift12 = Gift.new(title: "Presente ao casal", category: "Outros", value: 3500, total_quota: 10, wedding_id: wedding.id)
-# gift12.photo.attach(io: gift_file12, filename: "", content_type: "image/png")
-# gift12.save!
-# gift13 = Gift.new(title: "Passeio à Praia Paradisíaca", category: "Viagem", value: 1570, total_quota: 10, wedding_id: wedding.id)
-# gift13.photo.attach(io: gift_file13, filename: "", content_type: "image/png")
-# gift13.save!
-# puts "Gifts created"
+gift1 = Gift.new(title: "Jantar Romântico", category: "Jantar", value: 450, total_quota: 10, wedding_id: wedding.id)
+gift1.photo.attach(io: gift_file1, filename: "", content_type: "image/png")
+gift1.save!
+gift2 = Gift.new(title: "Jantar no Copacabana Palace", category: "Jantar", value: 800, total_quota: 10, wedding_id: wedding.id)
+gift2.photo.attach(io: gift_file2, filename: "", content_type: "image/png")
+gift2.save!
+gift3 = Gift.new(title: "Jantar em Paris", category: "Jantar", value: 1000, total_quota: 10, wedding_id: wedding.id)
+gift3.photo.attach(io: gift_file3, filename: "", content_type: "image/png")
+gift3.save!
+gift4 = Gift.new(title: "Passeio de Balão", category: "Passeio", value: 750, total_quota: 10, wedding_id: wedding.id)
+gift4.photo.attach(io: gift_file4, filename: "", content_type: "image/png")
+gift4.save!
+gift5 = Gift.new(title: "Mergulho com Golfinhos", category: "Passeio", value: 1200, total_quota: 10, wedding_id: wedding.id)
+gift5.photo.attach(io: gift_file5, filename: "", content_type: "image/png")
+gift5.save!
+gift6 = Gift.new(title: "Passagem de lua de mel", category: "Viagem", value: 7000, total_quota: 10, wedding_id: wedding.id)
+gift6.photo.attach(io: gift_file6, filename: "", content_type: "image/png")
+gift6.save!
+gift7 = Gift.new(title: "Passeio ao Coliseu", category: "Passeio", value: 1500, total_quota: 10, wedding_id: wedding.id)
+gift7.photo.attach(io: gift_file7, filename: "", content_type: "image/png")
+gift7.save!
+gift8 = Gift.new(title: "Aluguel de carro", category: "Viagem", value: 2500, total_quota: 10, wedding_id: wedding.id)
+gift8.photo.attach(io: gift_file8, filename: "", content_type: "image/png")
+gift8.save!
+gift9 = Gift.new(title: "Hospedagem em maldivas", category: "Viagem", value: 8500, total_quota: 10, wedding_id: wedding.id)
+gift9.photo.attach(io: gift_file9, filename: "", content_type: "image/png")
+gift9.save!
+gift10 = Gift.new(title: "Hiking no Arizona", category: "Viagem", value: 5000, total_quota: 10, wedding_id: wedding.id)
+gift10.photo.attach(io: gift_file10, filename: "", content_type: "image/png")
+gift10.save!
+gift11 = Gift.new(title: "Safari", category: "Viagem", value: 7999, total_quota: 10, wedding_id: wedding.id)
+gift11.photo.attach(io: gift_file11, filename: "", content_type: "image/png")
+gift11.save!
+gift12 = Gift.new(title: "Presente ao casal", category: "Outros", value: 3500, total_quota: 10, wedding_id: wedding.id)
+gift12.photo.attach(io: gift_file12, filename: "", content_type: "image/png")
+gift12.save!
+gift13 = Gift.new(title: "Passeio à Praia Paradisíaca", category: "Viagem", value: 1570, total_quota: 10, wedding_id: wedding.id)
+gift13.photo.attach(io: gift_file13, filename: "", content_type: "image/png")
+gift13.save!
+puts "Gifts created"
+
 # Create a list of guests with faker
 
 # 100.times do
