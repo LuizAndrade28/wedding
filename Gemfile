@@ -55,6 +55,7 @@ gem "rails-i18n"
 gem 'faker'
 gem "geocoder"
 gem "pundit"
+gem "money-rails"
 
 group :development, :test do
   gem "dotenv-rails"
