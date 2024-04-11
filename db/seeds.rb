@@ -66,7 +66,7 @@ tip2.save!
 # gift_file10 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/img_arizona_b3532r.jpg")
 # gift_file11 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/safari_u0klfe.jpg")
 # gift_file12 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/presentes_x8c9kp.jpg")
-# gift_file13 = URI.open("")
+# gift_file13 = URI.open("https://res.cloudinary.com/dqswoqgtn/image/upload/Gifs_photos/praia_paradisiaca_pslfxo.jpg")
 
 # gift1 = Gift.new(title: "Jantar Romântico", category: "Jantar", value: 450, total_quota: 10, wedding_id: wedding.id)
 # gift1.photo.attach(io: gift_file1, filename: "", content_type: "image/png")
