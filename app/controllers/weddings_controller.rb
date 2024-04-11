@@ -1,7 +1,7 @@
 class WeddingsController < ApplicationController
   before_action :set_wedding, only: %i[edit update destroy]
   skip_before_action :authenticate_user!, only: [:show]
-  
+
   def new
     @wedding = Wedding.new
   end
