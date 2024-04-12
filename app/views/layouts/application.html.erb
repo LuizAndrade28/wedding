@@ -9,13 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;0,400;0,800;1,100;1,700;1,800&family=Protest+Guerrilla&family=Protest+Riot&family=Protest+Strike&family=Roboto+Slab:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application" %>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
     <%= javascript_importmap_tags %>
     <meta name="description" content="<%= meta_description %>">
     <meta name="turbo-prefetch" content="false">
     <meta name="csrf-token" content="<%= form_authenticity_token %>">
-
   </head>
 
   <body>

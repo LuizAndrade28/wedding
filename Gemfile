@@ -27,6 +27,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "cloudinary"
 gem "pg_search"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -52,10 +53,11 @@ gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "rails-i18n"
-gem 'faker'
 gem "geocoder"
 gem "pundit"
 gem "money-rails"
+# gem 'stackprof', '~> 0.2.26'
+# gem 'memory_profiler'
 
 group :development, :test do
   gem "dotenv-rails"
@@ -68,7 +70,7 @@ group :development do
   gem "web-console"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
+  # gem 'rack-mini-profiler', require: ['enable_rails_patches', 'rack-mini-profiler']
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
