@@ -20,8 +20,5 @@ class UsersController < ApplicationController
 
     # Tips info
     @tips = Tip.where(wedding: @user_wedding)
-
-    # Wedding info
-    @couple = @user_wedding ? "#{current_user&.first_name}&#{@user_wedding&.partner_first_name&.capitalize}" : ""
   end
 end

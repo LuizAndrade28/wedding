@@ -39,7 +39,7 @@ class WeddingsController < ApplicationController
   private
 
   def set_wedding
-    @wedding = Wedding.find(params[:id])
+    @wedding = Wedding.find_by(id: params[:id])
   end
 
   def wedding_params

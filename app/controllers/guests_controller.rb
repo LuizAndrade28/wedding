@@ -29,7 +29,11 @@ class GuestsController < ApplicationController
   end
 
   def edit
-    @guest = Guest.find(params[:id])
+    @guest = Guest.find_by(id: params[:id])
+    if @guest.nil?
+      flash[:alert] = 'Convidado não encontrado.'
+      redirect_to user_profile_path(current_user)
+    end
   end
 
   def update

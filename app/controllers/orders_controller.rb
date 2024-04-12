@@ -4,12 +4,20 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @gift = Gift.find(params[:gift_id])
+    @gift = Gift.find_by(id: params[:gift_id])
+    if @gift.nil?
+      flash[:alert] = "O presente não foi encontrado."
+      redirect_to root_path
+    end
   end
 
   def create
     @order = Order.new(order_params)
-    @gift = Gift.find(params[:gift_id])
+    @gift = Gift.find_by(id: params[:gift_id])
+    if @gift.nil?
+      flash[:alert] = "O presente não foi encontrado."
+      redirect_to root_path
+    end
     @order.gift = @gift
     if @order.save
       @quotes = @gift.total_quota - 1

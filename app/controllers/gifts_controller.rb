@@ -19,7 +19,7 @@ class GiftsController < ApplicationController
     else
       @gifts
     end
-    @wedding_guests_messages = Guest.where(wedding: @wedding).select { |guest| guest.confirmation_message.present? }
+    @wedding_guests_messages = Guest.where(wedding: @wedding).where.not(confirmation_message: nil)
     @tips = Tip.where(wedding: @wedding)
   end
 

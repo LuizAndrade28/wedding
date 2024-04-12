@@ -1,8 +1,4 @@
-.bpages {
-  background-color: #FAFAFA;
-}
-
-.bwed-grey {
+.bwed-gray {
   margin: 0;
   padding: 0;
   flex: 1;
@@ -12,7 +8,7 @@
   height: 100%;
 }
 
-.bwed-grey-img {
+.bwed-gray-img {
   position: absolute;
   z-index: -1;
   top: 0;
@@ -28,7 +24,7 @@
   height: 100%;
 }
 
-.blur-wed {
+#blur-wed {
   backdrop-filter: blur(1.5px);
 }
 
