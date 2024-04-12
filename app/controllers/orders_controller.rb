@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @gift = Gift.find(params[:gift_id])
     @order.gift = @gift
-    @couple = "#{@wedding.user.first_name}&#{@wedding.partner_first_name}"
     if @order.save
       @quotes = @gift.total_quota - 1
       @gift.update!(total_quota: @quotes)
@@ -26,8 +25,7 @@ class OrdersController < ApplicationController
   private
 
   def set_wedding
-    @my = Wedding.last
-    @wedding = Wedding.find(@my.id)
+    @wedding = Wedding.last
   end
 
   def order_params

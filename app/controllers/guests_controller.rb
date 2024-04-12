@@ -1,14 +1,13 @@
 class GuestsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[update]
+  before_action :set_wedding, only: %i[create new edit update destroy]
 
   def new
     @guest = Guest.new
-    @wedding = Wedding.find(params[:wedding_id])
   end
 
   def create
     @guest = Guest.new(guest_params)
-    @wedding = Wedding.find(params[:wedding_id])
     @guest.wedding = @wedding
 
     respond_to do |format|
@@ -31,11 +30,9 @@ class GuestsController < ApplicationController
 
   def edit
     @guest = Guest.find(params[:id])
-    @wedding = Wedding.find(params[:wedding_id])
   end
 
   def update
-    @wedding = Wedding.find(params[:wedding_id])
     @guest = @wedding.guests.find(params[:id])
     respond_to do |format|
       if @guest.update(guest_params)
@@ -53,6 +50,10 @@ class GuestsController < ApplicationController
   end
 
   private
+
+  def set_wedding
+    @wedding = Wedding.find(params[:wedding_id])
+  end
 
   def guest_params
     params.require(:guest).permit(:full_name, :email, :phone, :confirmed, :confirmation_message)

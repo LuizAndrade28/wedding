@@ -2,14 +2,11 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
-    @my = Wedding.last
-    @wedding = Wedding.find(@my.id)
+    @wedding = Wedding.last
     @guests = Guest.where(wedding: @wedding)
     @gifts = Gift.where(wedding: @wedding)
-    @user_wedding = Wedding.where(user: @wedding.user_id).to_a
-    @user_wedding_tips = Tip.where(wedding: @user_wedding)
+    @tips = Tip.where(wedding: @wedding)
     @wedding_guests_messages = Guest.where(wedding: @wedding).select { |guest| guest.confirmation_message.present? }
-    @partner_name = @user_wedding.map { |partner| "#{ partner.partner_first_name }" }.first
     @days_left = (@wedding.date - Date.today).to_i
     @month = @wedding.date.strftime("%B")
     @month =

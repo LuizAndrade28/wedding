@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   end
   get "presentes", to: "gifts#index", as: :presentes
   get "presentes/:gift_id/comprar", to: "orders#new", as: :buy_gift
-  get "users/:id/dashboard", to: "users#show", as: :user_profile
+  get "/dashboard", to: "users#show", as: :user_profile
 end

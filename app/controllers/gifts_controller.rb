@@ -1,11 +1,10 @@
 class GiftsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
+  before_action :set_wedding, only: %i[delete_all create edit update new]
 
   def index
-    @my = Wedding.last
-    @wedding = Wedding.find(@my.id)
+    @wedding = Wedding.last
     @gifts = Gift.where(wedding: @wedding)
-    @order = Order.new
     case params[:sort_by]
     when "value_asc"
       @gifts = @gifts.order(value_cents: :asc)
@@ -20,43 +19,45 @@ class GiftsController < ApplicationController
     else
       @gifts
     end
-    @couple = "#{@wedding.user.first_name}&#{@wedding.partner_first_name}"
     @wedding_guests_messages = Guest.where(wedding: @wedding).select { |guest| guest.confirmation_message.present? }
-    @user_wedding_tips = Tip.where(wedding: @wedding)
+    @tips = Tip.where(wedding: @wedding)
   end
 
   def new
     @gift = Gift.new
-    @wedding = Wedding.find(params[:wedding_id])
   end
 
   def delete_all
-    @wedding = Wedding.find(params[:wedding_id])
     @gifts = Gift.where(wedding: @wedding)
-    @gifts.each do |gift|
-      gift.destroy
-    end
+    @gifts.each(&:destroy)
     redirect_to user_profile_path(current_user)
   end
 
   def create
     @gift = Gift.new(gift_params)
-    @wedding = Wedding.find(params[:wedding_id])
     @gift.wedding = @wedding
-    @gift.save
-
-    redirect_to user_profile_path(current_user)
+    if @gift.save
+      redirect_to user_profile_path(current_user)
+    else
+      render :new, status: :unprocessable_entity, flash: {
+        error: "Por favor, verifique se preencheu corretamente todos os campos."
+      }
+    end
   end
 
   def edit
     @gift = Gift.find(params[:id])
-    @wedding = Wedding.find(params[:wedding_id])
   end
 
   def update
-    @gift = Gift.find(params[:id])
-    @gift.update(gift_params)
-    redirect_to user_profile_path(current_user)
+    @gift = @wedding.gifts.find(params[:id])
+    if @gift.update(gift_params)
+      redirect_to user_profile_path(current_user)
+    else
+      render :edit, status: :unprocessable_entity, flash: {
+        error: "Por favor, verifique se preencheu corretamente todos os campos."
+      }
+    end
   end
 
   def destroy
@@ -66,6 +67,10 @@ class GiftsController < ApplicationController
   end
 
   private
+
+  def set_wedding
+    @wedding = Wedding.find(params[:wedding_id])
+  end
 
   def sort_by_title_asc
     Gift.all.sort_by { |gift| [gift.title] }

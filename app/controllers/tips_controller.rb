@@ -1,14 +1,13 @@
 class TipsController < ApplicationController
   before_action :set_tip, only: %i[edit update destroy]
+  before_action :set_wedding, only: %i[new create edit update]
 
   def new
     @tip = Tip.new
-    @wedding = Wedding.find(params[:wedding_id])
   end
 
   def create
     @tip = Tip.new(tip_params)
-    @wedding = Wedding.find(params[:wedding_id])
     @tip.wedding = @wedding
 
     respond_to do |format|
@@ -23,11 +22,9 @@ class TipsController < ApplicationController
   end
 
   def edit
-    @wedding = Wedding.find(params[:wedding_id])
   end
 
   def update
-    @wedding = Wedding.find(params[:wedding_id])
     if @tip.update(tip_params)
       redirect_to user_profile_path(current_user)
     else
@@ -41,6 +38,11 @@ class TipsController < ApplicationController
   end
 
   private
+
+  def set_wedding
+    @my = Wedding.last
+    @wedding = Wedding.find(@my.id)
+  end
 
   def set_tip
     @tip = Tip.find(params[:id])
