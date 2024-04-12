@@ -83,3 +83,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem 'derailed_benchmarks', group: :development
+gem 'stackprof', group: :development
+gem 'scout_apm'
