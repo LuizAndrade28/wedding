@@ -1,41 +1,37 @@
-<section class="bwed-gray">
-  <%= render "navbar"%>
-  <section class="bwed-gray-img"></section>
-  <div class="container">
-    <!-- Gifts filter -->
-    <div class="sort-by mt-4" style= "width:17em">
-      <form action="<%= presentes_path %>" method="get">
-          <select name="sort_by" aria-label="select" style= "width:8.5em">
-            <option value="value_asc">Menor Preço</option>
-            <option value="value_desc">Maior Preço</option>
-            <option value="title_asc">A-Z </option>
-            <option value="title_desc">Z-A</option>
-            <option value="category">Categoria</option>
-          </select>
-          <input type="submit" value="Ordernar" class="bnt-gift" >
-        </form>
-    </div>
-    <!-- Gifts -->
-    <div class="row">
-      <% @gifts.each do |gift|  %>
-        <div class="col-3">
-          <div class="card-wedding-gift-body">
-            <%= cl_image_tag(gift.photo.key, alt: "Image", :gravity=>"center", :crop=>"fill") %>
-            <div class="card-wedding-gift-details">
-              <div class="card-wedding-gift-info">
-                <h5 class="card-wedding-gift-title"> <%= gift.title %> </h5>
-                <div class="card-wedding-gift-description">
-                  <p> <%= number_to_currency(gift.value, :unit => "R$", :separator => ",", :delimiter => ".") %> </p>
-                  <p> <%= gift.category %> </p>
-                </div>
+<div class="container">
+  <!-- Gifts filter -->
+  <div class="sort-by mt-4" style= "width:17em">
+    <form action="<%= presentes_path %>" method="get">
+        <select name="sort_by" aria-label="select" style= "width:8.5em">
+          <option value="value_asc">Menor Preço</option>
+          <option value="value_desc">Maior Preço</option>
+          <option value="title_asc">A-Z </option>
+          <option value="title_desc">Z-A</option>
+          <option value="category">Categoria</option>
+        </select>
+        <input type="submit" value="Ordernar" class="bnt-gift" >
+      </form>
+  </div>
+  <!-- Gifts -->
+  <div class="row">
+    <% @gifts.each do |gift|  %>
+      <div class="col-3">
+        <div class="card-wedding-gift-body">
+          <%= cl_image_tag(gift.photo.key, alt: "Image", :gravity=>"center", :crop=>"fill") %>
+          <div class="card-wedding-gift-details">
+            <div class="card-wedding-gift-info">
+              <h5 class="card-wedding-gift-title"> <%= gift.title %> </h5>
+              <div class="card-wedding-gift-description">
+                <p> <%= number_to_currency(gift.value, :unit => "R$", :separator => ",", :delimiter => ".") %> </p>
+                <p> <%= gift.category %> </p>
               </div>
-              <%= link_to "Comprar", buy_gift_path(gift.id), class: "btn bnt-wed-conf" %>
             </div>
+            <%= link_to "Comprar", buy_gift_path(gift.id), class: "btn bnt-wed-conf" %>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
-  <%= render "footer"%>
-  <section class="buffer-wed"></section>
-</section>
+</div>
+<%= render "footer"%>
+<section class="buffer-wed"></section>

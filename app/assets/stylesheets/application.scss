@@ -24,10 +24,15 @@ body {
   flex-direction: column;
   min-height: 100vh;
   height: fit-content;
+  background-image: url('wedding/bg-wed');
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
 .body-content {
   min-height: 90vh;
+  
 }
 
 h1,
