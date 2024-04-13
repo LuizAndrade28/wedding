@@ -1,13 +1,14 @@
 <section class="bwed-gray">
-  <%= render 'weddings/navbar' %>
-  <%= render 'weddings/banner_wed' %>
+  <%= render "weddings/navbar" %>
+  <%= render "weddings/banner_wed" %>
     <section class="buffer-wed"></section>
     <section class="bwed-gray-img"></section>
     <div id="blur-wed" class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="d-flex flex-column align-items-center" data-bs-spy="scroll" data-bs-target="#anchors-nav-wed" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
-            <%= render 'weddings/welcome_message' %>
+          <div class="d-flex flex-column align-items-center"
+          data-bs-spy="scroll" data-bs-target="#anchors-nav-wed" data-bs-smooth-scroll="true" tabindex="0">
+            <%= render "weddings/welcome_message" %>
             <section class="buffer-wed"></section>
             <section class="parallax-wed"></section>
             <section class="buffer-wed"></section>
@@ -17,15 +18,15 @@
             <section class="buffer-wed"></section>
             <%= render "weddings/tips" %>
             <% if !@wedding_guests_messages.empty? %>
-              <%= render 'weddings/messages' %>
+              <%= render "weddings/messages" %>
               <section class="buffer-wed"></section>
             <% end %>
-            <%= render 'weddings/final_message' %>
+            <%= render "weddings/final_message" %>
             <section class="buffer-wed"></section>
-            </div>
+          </div>
         </div>
       </div>
     </div>
-  <%= render 'weddings/footer' %>
+  <%= render "weddings/footer" %>
   <section class="buffer-wed"></section>
 </section>
