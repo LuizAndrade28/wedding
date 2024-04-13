@@ -4,18 +4,17 @@
 <div class="d-flex flex-column align-items-center" data-controller="attendance"
      data-attendance-guests-value="<%= @guests.to_json %>">
   <div class="d-flex flex-column align-items-center" data-attendance-target="formGuestElement">
-    <p id="wed-confirmation-title" class="text-secondary text-center ">PARA CONFIRMAR SUA PRESENÇA, É SÓ PROCURAR PELO SEU NOME<br>NO CAMPO ABAIXO E INCLUIR OS DADOS SOLICITADOS</p>
+    <p id="wed-confirmation-title" class="text-secondary text-center">PARA CONFIRMAR SUA PRESENÇA, É SÓ PROCURAR PELO SEU NOME<br>NO CAMPO ABAIXO E INCLUIR OS DADOS SOLICITADOS</p>
     <div class="w-75">
       <div class="form">
-        <input id="guestNameInput" class="form-control" data-action="keyup->attendance#guestName" data-attendance-target="input" type="text"
-               placeholder="Seu nome aqui" aria-label="default input example">
+        <input id="guestNameInput" class="form-control" data-action="keyup->attendance#guestName" data-attendance-target="input" type="text" placeholder="Seu nome aqui" aria-label="default input example">
         <div class="d-flex justify-content-center mt-2" data-action="click->attendance#searchGuest" data-attendance-target="divSubmit">
           <button id="searchButton" type="click" class="btn bnt-wed-conf w-50">Pesquisar</button>
         </div>
       </div>
     </div>
   </div>
-
+  <!-- Hidden div for guest confirmation -->
   <div class="d-none" data-attendance-target="guestForm">
     <div class="d-flex flex-column align-items-center">
       <h3 id="wed-confirmation-title" class="text-center">Precisamos verificar se você realmente é responsável por esse convite!</h3>
@@ -26,33 +25,36 @@
                  placeholder="Seu telefone" aria-label="default input example" maxlength="11">
           <div class="invalid-feedback d-none" data-attendance-target="guestPhoneError">Telefone inválido</div>
           <textarea id="confirmationMessage" class="form-control mt-2" data-attendance-target="confirmationMessage"
-                 placeholder="Deixe uma pequena mensagem para os noivos" aria-label="default input example" maxlength="131"></textarea>
-          <div class="errorMessages" data-attendance-target="errorMessages"></div> <!-- Adiciona o elemento para exibir as mensagens de erro -->
+          placeholder="Deixe uma pequena mensagem para os noivos" aria-label="default input example" maxlength="131"></textarea>
+          <div class="errorMessages" data-attendance-target="errorMessages">
+            <!-- Adiciona o elemento para exibir as mensagens de erro -->
+          </div>
           <div class="mt-2 d-flex justify-content-center">
             <div class="form-check form-check-inline">
               <input class="form-check-input radio-wed" type="radio" name="attendance" id="confirmAttendanceRadio" value="confirm"
-                     data-action="click->attendance#radioSelection">
+              data-action="click->attendance#radioSelection">
               <label class="form-check-label" for="confirmAttendanceRadio">Confirmar Presença</label>
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input radio-wed" type="radio" name="attendance" id="declineAttendanceRadio" value="decline"
-                     data-action="click->attendance#radioSelection">
+              data-action="click->attendance#radioSelection">
               <label class="form-check-label" for="declineAttendanceRadio">Não Irei Comparecer</label>
             </div>
           </div>
           <div class="d-flex justify-content-center mt-2">
             <button id="submitAttendanceButton" class="btn bnt-wed-conf w-50 me-2"
-                    data-action="click->attendance#submitAttendance"
-                    data-turbo-prefetch="false">Enviar</button>
+            data-action="click->attendance#submitAttendance" data-turbo-prefetch="false">Enviar</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <div class="text-center d-none mt-3" data-attendance-target="successMessages">
     <!-- Div para exibir mensagens de sucesso -->
   </div>
   <div class="text-center d-none mt-3" data-attendance-target="confirmationMessages">
     <!-- Div para exibir mensagens de confirmação -->
   </div>
+
 </div>

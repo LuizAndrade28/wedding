@@ -1,7 +1,6 @@
 <% if @tips != [] %>
   <% @tips.each do |tip| %>
-  <h2 id="dicas" class="wed-message-title mt-4"><%= tip.title %></h2>
-  <p class="text-center w-75 wed-messages-sizing m-0"><%= tip.content %></p>
+    <h2 id="dicas" class="wed-message-title mt-4"><%= tip.title %></h2>
+    <p class="text-center w-75 wed-messages-sizing m-0"><%= tip.content %></p>
   <% end %>
-  <section class="buffer-wed"></section>
 <% end %>
