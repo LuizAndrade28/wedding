@@ -1,16 +1,17 @@
-<div class="container">
+<div class="container mt-5">
   <!-- Gifts filter -->
-  <div class="sort-by mt-4" style= "width:17em">
+  <div class="sort-by mb-4 w-100">
     <form action="<%= presentes_path %>" method="get">
-        <select name="sort_by" aria-label="select" style= "width:8.5em">
-          <option value="value_asc">Menor Preço</option>
-          <option value="value_desc">Maior Preço</option>
-          <option value="title_asc">A-Z </option>
-          <option value="title_desc">Z-A</option>
-          <option value="category">Categoria</option>
-        </select>
-        <input type="submit" value="Ordernar" class="bnt-gift" >
-      </form>
+      <select name="sort_by" aria-label="select" style= "width:8.5em">
+        <option value="value_asc">Menor Preço</option>
+        <option value="value_desc">Maior Preço</option>
+        <option value="title_asc">A-Z </option>
+        <option value="title_desc">Z-A</option>
+        <option value="category">Categoria</option>
+      </select>
+      <input type="submit" value="Ordernar" class="bnt-gift" >
+    </form>
+    <%= link_to "Voltar à página principal", root_path, class: "btn bnt-wed-conf" %>
   </div>
   <!-- Gifts -->
   <div class="row">
@@ -33,5 +34,6 @@
     <% end %>
   </div>
 </div>
-<%= render "footer"%>
-<section class="buffer-wed"></section>
+<section class="d-flex justify-content-end me-5 my-5">
+  <a href="#" class="rounded-circle border bg-light p-2"><i class="fa-solid fa-angle-up fa-2xl" style="color: #1C1522"></i></a>
+</section>

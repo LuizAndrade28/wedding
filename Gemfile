@@ -56,8 +56,6 @@ gem "rails-i18n"
 gem "geocoder"
 gem "pundit"
 gem "money-rails"
-# gem 'stackprof', '~> 0.2.26'
-# gem 'memory_profiler'
 
 group :development, :test do
   gem "dotenv-rails"
@@ -84,6 +82,4 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'derailed_benchmarks', group: :development
-gem 'stackprof', group: :development
 gem 'scout_apm'

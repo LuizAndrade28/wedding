@@ -14,10 +14,9 @@
               <%= current_user.first_name[0].capitalize %>
             </span>
           </a>
-          <div class="dropdown-menu dropdown-menu-end bg-white mx-3" style="border-radius:10px" aria-labelledby="navbarDropdown">
-            <%# <section class="buffer-cds" style="background-color:#6F6FAB"></section> %>
+          <div class="dropdown-menu dropdown-menu-end bg-white mx-3 rounded-4" aria-labelledby="navbarDropdown">
             <%= link_to "Dashboard", user_profile_path(current_user), class: "dropdown-item" %>
-            <section class="border-bottom-purp"></section>
+            <div class="border-bottom-purp"></div>
             <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
           </div>
         </li>
