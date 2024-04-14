@@ -2,7 +2,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["togglableElement", "togglableElementChoiceCasamento", "togglableElementChoiceDados", "btnCasamento", "btnDados"];
+  static targets = ["togglableElement", "togglableElementChoiceCasamento", "btnCasamento"];
 
   connect() {
     if (this.element.dataset.fireCasamentoInfo !== undefined) {
@@ -13,10 +13,6 @@ export default class extends Controller {
       this.fireConvidadosInfo();
     } else if (this.element.dataset.firePresentesRecebidos !== undefined) {
       this.firePresentesRecebidos();
-    } else if (this.element.dataset.fireDados !== undefined) {
-      this.fireDados();
-    } else if (this.element.dataset.fireAmor !== undefined) {
-      this.fireAmor();
     }
   }
 
@@ -36,18 +32,6 @@ export default class extends Controller {
     this.toggleVisibility("presentesRecebidos");
   }
 
-  fireDados() {
-    this.toggleVisibility("dados");
-  }
-
-  fireUserInfo() {
-    this.toggleVisibility("userInfo");
-  }
-
-  fireAmor() {
-    this.toggleVisibility("amor");
-  }
-
   toggleVisibility(type) {
     this.togglableElementTargets.forEach(target => {
       if (target.dataset.toggleElement === type) {
@@ -59,19 +43,9 @@ export default class extends Controller {
   }
 
   fireChoiceCasamento() {
-    this.togglableElementChoiceDadosTarget.classList.add("d-none");
-    this.togglableElementChoiceCasamentoTarget.classList.remove("d-none");
     this.firePresentesRecebidos();
     this.fireConvidadosInfo();
     this.firePresentesInfo();
     this.fireCasamentoInfo();
-  }
-
-  fireChoiceDados() {
-    this.togglableElementChoiceCasamentoTarget.classList.add("d-none");
-    this.togglableElementChoiceDadosTarget.classList.remove("d-none");
-    this.fireAmor();
-    this.fireUserInfo();
-    this.fireDados();
   }
 }

@@ -86,9 +86,7 @@ export default class extends Controller {
   radioSelection(event) {
     const selectedValue = event.target.value;
     if (selectedValue === 'confirm') {
-      // Lógica para quando o convidado seleciona "Confirmar Presença"
     } else if (selectedValue === 'decline') {
-      // Lógica para quando o convidado seleciona "Não Irei Comparecer"
     }
   }
 
@@ -138,7 +136,7 @@ export default class extends Controller {
         this.showConfirmationMessage('Nós entendemos que nem todos podem comparecer, mas agradecemos muito a sua sinceridade, ajuda muito na organização do casamento!');
       }
     } else {
-      // Se a requisição falhou, trate o erro adequadamente
+      // Se a requisição falhar
     }
   }
 
