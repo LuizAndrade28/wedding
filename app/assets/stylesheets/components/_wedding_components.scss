@@ -45,11 +45,6 @@
   word-break: break-all;
 }
 
-.info-user-size {
-  height: 80vh !important;
-  width: 100% !important;
-}
-
 // Scroll user profile
 
 .scroll-card-wed {
@@ -90,17 +85,8 @@
   letter-spacing: .8px;
 }
 
-.userw-title-text-b {
-  letter-spacing: .8px;
-  font-size: 1.4rem;
-}
-
 .userw-title-text-s {
   letter-spacing: .4px;
-}
-
-.userw-text-g {
-  letter-spacing: 1.4px;
 }
 
 .userw-text-just {
@@ -116,7 +102,7 @@
   margin-top: 4.5%;
 }
 
-.userw-text-line-h {
+#userw-text-line-h {
   line-height: 1.6;
 }
 
@@ -147,7 +133,7 @@
   letter-spacing: 3px;
 }
 
-#wed-confirmation-title {
+.wed-confirmation-title {
   margin-top: 2vh;
   padding: 2vh;
   text-align: justify !important;
@@ -317,9 +303,9 @@
   min-height: 15vh;
 }
 
-.buffer-cds {
-  width: 100%;
-  min-height: 4vh;
+.userw-title-text-b {
+  letter-spacing: .8px;
+  font-size: 1.4rem;
 }
 
 .border-bottom-purp {

@@ -4,7 +4,7 @@
 <div class="d-flex flex-column align-items-center" data-controller="attendance"
      data-attendance-guests-value="<%= @guests.to_json %>">
   <div class="d-flex flex-column align-items-center" data-attendance-target="formGuestElement">
-    <p id="wed-confirmation-title" class="text-secondary text-center">PARA CONFIRMAR SUA PRESENÇA, É SÓ PROCURAR PELO SEU NOME<br>NO CAMPO ABAIXO E INCLUIR OS DADOS SOLICITADOS</p>
+    <p class="text-secondary text-center wed-confirmation-title">PARA CONFIRMAR SUA PRESENÇA, É SÓ PROCURAR PELO SEU NOME<br>NO CAMPO ABAIXO E INCLUIR OS DADOS SOLICITADOS</p>
     <div class="w-75">
       <div class="form">
         <input id="guestNameInput" class="form-control" data-action="keyup->attendance#guestName" data-attendance-target="input" type="text" placeholder="Seu nome aqui" aria-label="default input example">
@@ -17,7 +17,7 @@
   <!-- Hidden div for guest confirmation -->
   <div class="d-none" data-attendance-target="guestForm">
     <div class="d-flex flex-column align-items-center">
-      <h3 id="wed-confirmation-title" class="text-center">Precisamos verificar se você realmente é responsável por esse convite!</h3>
+      <h3 class="text-center wed-confirmation-title">Precisamos verificar se você realmente é responsável por esse convite!</h3>
       <p>Complete as informações abaixo:</p>
       <div class="w-50">
         <div class="form">

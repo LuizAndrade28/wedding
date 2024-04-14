@@ -51,7 +51,7 @@ gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
-gem "sassc-rails"
+gem "sassc-rails", require: false
 gem "rails-i18n"
 gem "geocoder"
 gem "pundit"

@@ -19,8 +19,4 @@ class Wedding < ApplicationRecord
   validates :partner_first_name, presence: true
   validates :partner_last_name, presence: true
   validates :couple_photo, presence: true
-
-  def partner_initials
-    "#{partner_first_name&.chars&.first}#{partner_last_name&.chars&.first}"
-  end
 end
