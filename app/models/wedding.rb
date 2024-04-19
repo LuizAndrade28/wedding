@@ -4,8 +4,6 @@ class Wedding < ApplicationRecord
   has_many :orders, through: :gifts, dependent: :destroy
   has_many :guests, dependent: :destroy
   has_one_attached :couple_photo
-  has_one_attached :partner_one_photo
-  has_one_attached :partner_two_photo
   has_many :tips, dependent: :destroy
 
   geocoded_by :address

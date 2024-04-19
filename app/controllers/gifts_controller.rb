@@ -4,7 +4,7 @@ class GiftsController < ApplicationController
 
   def index
     @wedding = Wedding.last
-    @gifts = Gift.where(wedding: @wedding)
+    @gifts = Gift.where(wedding: @wedding).where('total_quota > 0')
     case params[:sort_by]
     when "value_asc"
       @gifts = @gifts.order(value_cents: :asc)

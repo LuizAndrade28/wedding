@@ -1,6 +1,3 @@
-# require "memory-profiler"
-# require "stackprof"
-
 class WeddingsController < ApplicationController
   before_action :set_wedding, only: %i[edit update destroy]
 
