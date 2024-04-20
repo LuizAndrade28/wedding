@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_10_202840) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_19_013446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_202840) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "confirmation_message"
+    t.bigint "primary_guest_id"
+    t.index ["primary_guest_id"], name: "index_guests_on_primary_guest_id"
     t.index ["wedding_id"], name: "index_guests_on_wedding_id"
   end
 
@@ -118,6 +120,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_202840) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "gifts", "weddings"
+  add_foreign_key "guests", "guests", column: "primary_guest_id"
   add_foreign_key "guests", "weddings"
   add_foreign_key "orders", "gifts"
   add_foreign_key "tips", "weddings"

@@ -68,6 +68,11 @@
           <div>
             <p class="m-0 mt-2 ps-1 userw-title-text-s">Nome: <%= guest.full_name %></p>
             <p class="m-0 ps-1 userw-title-text-s">Telefone: <%= number_to_phone(guest.phone, pattern: /\A(\d{2})(\d{5})(\d{4})\z/, area_code: true) %> </p>
+            <% if guest.primary_guest != nil %>
+              <p class="m-0 ps-1 userw-title-text-s">Tipo: Acompanhante</p>
+            <% else %>
+              <p class="m-0 ps-1 userw-title-text-s">Tipo: Principal</p>
+            <% end %>
             <p class="m-0 ps-1 userw-title-text-s">Status: Confirmado</p>
           </div>
           <hr class="border-1">
@@ -95,6 +100,11 @@
           <span>
             <p class="m-0 mt-2 ps-1 userw-title-text-s">Nome: <%= guest.full_name %></p>
             <p class="m-0 ps-1 userw-title-text-s">Telefone: <%= number_to_phone(guest.phone, pattern: /\A(\d{2})(\d{5})(\d{4})\z/, area_code: true) %> </p>
+            <% if guest.primary_guest != nil %>
+              <p class="m-0 ps-1 userw-title-text-s">Tipo: Acompanhante</p>
+            <% else %>
+              <p class="m-0 ps-1 userw-title-text-s">Tipo: Principal</p>
+            <% end %>
             <p class="m-0 ps-1 userw-title-text-s">Status: A confirmar</p>
           </span>
           <hr class="border-1">
@@ -122,6 +132,11 @@
           <span>
             <p class="m-0 mt-2 ps-1 userw-title-text">Nome: <%= guest.full_name %></p>
             <p class="m-0 ps-1 userw-title-text">Telefone: <%= number_to_phone(guest.phone, pattern: /\A(\d{2})(\d{5})(\d{4})\z/, area_code: true) %> </p>
+            <% if guest.primary_guest != nil %>
+              <p class="m-0 ps-1 userw-title-text-s">Tipo: Acompanhante</p>
+            <% else %>
+              <p class="m-0 ps-1 userw-title-text-s">Tipo: Principal</p>
+            <% end %>
             <p class="m-0 ps-1 userw-title-text">Status: Não comparecerá</p>
           </span>
           <hr class="border-1">
