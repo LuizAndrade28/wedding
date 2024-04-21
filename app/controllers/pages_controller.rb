@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     @guests = Guest.where(wedding: @wedding)
     @gifts = Gift.where(wedding: @wedding)
     @tips = Tip.where(wedding: @wedding)
-    @wedding_guests_messages = Guest.where(wedding: @wedding, confirmation_message: true)
+    @wedding_guests_messages = Guest.where(wedding: @wedding).where.not(confirmation_message: nil)
     @days_left = (@wedding.date - Date.today).to_i
     @month = I18n.l(@wedding.date, format: "%B").capitalize
     @day = @wedding.date.strftime("%d")

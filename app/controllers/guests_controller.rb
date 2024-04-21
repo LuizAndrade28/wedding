@@ -1,6 +1,6 @@
 class GuestsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[update]
-  before_action :set_wedding, only: %i[create new edit update destroy]
+  before_action :set_wedding, only: %i[create new edit update]
 
   def new
     @guest = Guest.new
@@ -21,21 +21,6 @@ class GuestsController < ApplicationController
     end
   end
 
-  def delete_all
-    @wedding = Wedding.find(params[:id])
-    @guests = Guest.where(wedding: @wedding)
-    @guests.each(&:destroy)
-    redirect_to user_profile_path(current_user)
-  end
-
-  def edit
-    @guest = Guest.find_by(id: params[:id])
-    if @guest.nil?
-      flash[:alert] = 'Convidado não encontrado.'
-      redirect_to user_profile_path(current_user)
-    end
-  end
-
   def update
     @guest = @wedding.guests.find(params[:id])
     respond_to do |format|
@@ -45,12 +30,6 @@ class GuestsController < ApplicationController
         format.json { render json: { status: :error, errors: @guest.errors.full_messages } }
       end
     end
-  end
-
-  def destroy
-    @guest = Guest.find(params[:id])
-    @guest.destroy
-    redirect_to user_profile_path(current_user)
   end
 
   private

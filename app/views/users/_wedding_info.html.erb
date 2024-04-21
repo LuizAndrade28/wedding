@@ -1,0 +1,35 @@
+<div class="flex-grow-1 d-flex flex-column justify-content-between">
+  <div class="flex-grow-1 mt-5 h-25 m-3 rounded-4 d-flex justify-content-center align-items-center">
+    <h4 class="fw-bold user-comp-text m-0">Meu casamento</h4>
+  </div>
+  <hr class="border-1 m-3">
+  <div class="flex-grow-1 h-25 m-3 rounded-4 d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex">
+      <%= link_to root_path do %>
+        <div><i class="fa-regular fa-eye me-2 wedding-icons-color"></i></div>
+      <% end %>
+      <p class="userw-title-text-s mb-3">Visualizar casamento</p>
+    </div>
+    <div class="d-flex">
+      <%= link_to new_wedding_tip_path(@user_wedding) do %>
+        <div><i class="fa-solid fa-plus text-success me-2"></i></div>
+      <% end %>
+      <p class="userw-title-text-s mb-0">Adicionar mais dicas</p>
+    </div>
+  </div>
+  <hr class="border-1 m-3">
+  <div class="flex-grow-1 h-25 m-3 rounded-4 d-flex flex-column justify-content-center">
+    <div class="d-flex">
+      <div><i class="fa-solid fa-person-circle-check me-2 wedding-icons-color"></i></div>
+      <p class="p-0 userw-title-text-s">Convidados: <%= @wedding_guests.count %></p>
+    </div>
+    <div class="d-flex">
+      <div><i class="fa-solid fa-gifts me-2 wedding-icons-color"></i></div>
+    <p class="p-0 userw-title-text-s">Presentes: <%= @wedding_gifts.count %></p>
+    </div>
+    <div class="d-flex">
+      <div><i class="fa-solid fa-piggy-bank me-2 wedding-icons-color"></i></div>
+      <p class="p-0 userw-title-text-s">Presentes Recebidos: <%= @orders.count %></p>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,5 @@
-<!-- No wedding created yet -->
-<% if @user_wedding.nil? %>
-  <section class="h-100 d-flex flex-column align-items-center">
-    <div class="d-flex flex-column justify-content-center align-items-center userw-text-margin w-75">
-      <h3 class="userw-text-just userw-title-text mb-5">Ops, parece que o seu casamento ainda não foi criado!</h3>
-      <p class="userw-title-text-s userw-text-just-s mb-5"> Por conta disso, não há presentes a receber. <span class="text-white px-1 user-comp-info-progress">Volte para a aba do casamento</span> e siga as instruções para criá-lo!</p>
-      <h3 class="userw-text-just userw-title-text mb-4">Nos vemos em breve!</h3>
-    </div>
-  </section>
-
 <!-- No orders yet -->
-<% elsif @orders.empty? %>
+<% if @orders.empty? %>
   <section class="h-100 d-flex flex-column align-items-center">
     <div class="d-flex flex-column justify-content-center align-items-center w-75 userw-text-margin">
       <h3 class="userw-text-just userw-title-text mb-5">Parece que temos um <span class="text-white px-1 user-comp-info-progress warning-wedding-message">CASAMENTO!</h3></span>
@@ -18,7 +8,7 @@
   </section>
 
 <!-- Orders received and summary -->
-<% else %>
+<% elsif !@orders.empty? %>
   <div class="d-flex flex-column align-items-center ">
     <h4 class="m-0 pb-2 userw-title-text">Quantidade de presentes recebidos: <%= @orders&.count %></h4>
     <p class="m-0 pt-2 pb-4 userw-title-text-s">Valor total: <%= number_to_currency(@orders.sum(&:value), :unit => "R$ ", :separator => ",", :delimiter => ".") %></p>

@@ -1,63 +1,31 @@
-<% if @wedding_gifts.empty? && @user_wedding %>
+<!-- Wedding gifts list already created -->
+<div class="d-flex justify-content-center pb-4">
+  <!-- Wedding gifts summary-->
+  <h4 class="m-0 userw-title-text">Quantidade de presentes cadastrados: <%= @wedding_gifts.count %></h4>
+  <span class="d-flex align-items-center ms-5">
+    <%= link_to new_wedding_gift_path(@user_wedding) do %>
+      <div><i class="fa-solid fa-plus text-success me-2"></i></div>
+    <% end %>
+  </span>
+</div>
 
-  <!-- Call-to-action to create the gift list -->
-  <section class="h-100 d-flex flex-column align-items-center">
-    <div class="d-flex flex-column justify-content-center align-items-center w-75 userw-text-margin">
-      <h3 class="userw-text-just userw-title-text mb-5">Parece que temos um <span class="text-white px-1 user-comp-info-progress warning-wedding-message">CASAMENTO!</h3></span>
-      <p class="userw-title-text-s userw-text-just-s mb-5">Vamos criar a sua lista?</p>
-      <%= link_to "Adicionar lista de presentes", new_wedding_gift_path(@user_wedding), class: "btn btn-outline-dark shadow-sm" %>
+<!-- Wedding gifts -->
+<section class="d-flex flex-wrap" style="gap: .8%">
+  <% @wedding_gifts.each do |gift| %>
+  <div class="border shadow-sm border-card-wed-user p-2 mb-2 wedding-user-card-size">
+    <div class="user-bg-info-wed-content d-flex justify-content-between px-2 py-1 rounded-2">
+      <p class="m-0 userw-title-text">Informações:</p>
+      <div class="d-flex">
+        <%= link_to edit_wedding_gift_path(@user_wedding, gift) do %>
+        <div><i class="fa-solid fa-pen user-comp-edit me-2"></i></div>
+        <% end %>
+      </div>
     </div>
-  </section>
-
-<% elsif @user_wedding.nil? %>
-
-  <!-- No wedding created yet -->
-  <section class="h-100 d-flex flex-column align-items-center">
-    <div class="d-flex flex-column justify-content-center align-items-center w-75 userw-text-margin">
-      <h3 class="userw-text-just userw-title-text mb-5">Ops, parece que o seu casamento ainda não foi criado!</h3>
-      <p class="userw-title-text-s userw-text-just-s mb-5"> Por conta disso, não conseguimos gerar a sua lista de presentes. <span class="text-white px-1 user-comp-info-progress">Volte para a aba do casamento</span> e siga as instruções para criá-lo!</p>
-      <h3 class="userw-text-just userw-title-text m-0">Nos vemos em breve!</h3>
-    </div>
-  </section>
-
-<% else %>
-
-  <!-- Wedding gifts list already created -->
-  <div class="d-flex justify-content-center pb-4">
-    <!-- Wedding gifts summary-->
-    <h4 class="m-0 userw-title-text">Quantidade de presentes cadastrados: <%= @wedding_gifts.count %></h4>
-    <span class="d-flex align-items-center ms-5">
-      <%= link_to new_wedding_gift_path(@user_wedding) do %>
-        <div><i class="fa-solid fa-plus text-success me-2"></i></div>
-      <% end %>
-      <%= link_to wedding_delete_all_gifts_path(@user_wedding), data: { turbo_method: :delete, turbo_confirm: "Deletar a lista inteira e começar do zero. Você tem certeza?" } do %>
-        <div><i class="fa-solid fa-xmark wedding-x-icon"></i></div>
-      <% end %>
+    <span>
+      <p class="m-0 mt-2 ps-1 userw-title-text"><%= gift.title %></p>
+      <p class="m-0 ps-1 userw-title-text"><%= number_to_currency(gift.value, :unit => "R$ ", :separator => ",", :delimiter => ".") %></p>
+      <p class="m-0 ps-1 userw-title-text">Quantidade de cotas: <%= gift.total_quota %></p>
     </span>
   </div>
-
-  <!-- Wedding gifts -->
-  <section class="d-flex flex-wrap" style="gap: .8%">
-    <% @wedding_gifts.each do |gift| %>
-    <div class="border shadow-sm border-card-wed-user p-2 mb-2 wedding-user-card-size">
-      <div class="user-bg-info-wed-content d-flex justify-content-between px-2 py-1 rounded-2">
-        <p class="m-0 userw-title-text">Informações:</p>
-        <div class="d-flex">
-          <%= link_to edit_wedding_gift_path(@user_wedding, gift) do %>
-          <div><i class="fa-solid fa-pen user-comp-edit me-2"></i></div>
-          <% end %>
-          <%= link_to wedding_gift_path(@user_wedding, gift), data: { turbo_method: :delete, turbo_confirm: "Você tem certeza?" } do %>
-            <div><i class="fa-solid fa-xmark wedding-x-icon"></i></div>
-          <% end %>
-        </div>
-      </div>
-      <span>
-        <p class="m-0 mt-2 ps-1 userw-title-text"><%= gift.title %></p>
-        <p class="m-0 ps-1 userw-title-text"><%= number_to_currency(gift.value, :unit => "R$ ", :separator => ",", :delimiter => ".") %></p>
-        <p class="m-0 ps-1 userw-title-text">Quantidade de cotas: <%= gift.total_quota %></p>
-      </span>
-    </div>
-    <% end %>
-  </section>
-
-<% end %>
+  <% end %>
+</section>
