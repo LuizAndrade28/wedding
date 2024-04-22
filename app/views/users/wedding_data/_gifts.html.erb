@@ -15,11 +15,6 @@
   <div class="border shadow-sm border-card-wed-user p-2 mb-2 wedding-user-card-size">
     <div class="user-bg-info-wed-content d-flex justify-content-between px-2 py-1 rounded-2">
       <p class="m-0 userw-title-text">Informações:</p>
-      <div class="d-flex">
-        <%= link_to edit_wedding_gift_path(@user_wedding, gift) do %>
-        <div><i class="fa-solid fa-pen user-comp-edit me-2"></i></div>
-        <% end %>
-      </div>
     </div>
     <span>
       <p class="m-0 mt-2 ps-1 userw-title-text"><%= gift.title %></p>

@@ -1,6 +1,6 @@
 class GuestsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[update]
-  before_action :set_wedding, only: %i[create new edit update]
+  before_action :set_wedding, only: %i[create new update]
 
   def new
     @guest = Guest.new

@@ -21,5 +21,6 @@ class PagesController < ApplicationController
       ),
       marker_html: render_to_string(partial: "weddings/marker")
     }] if @wedding.latitude && @wedding.longitude
+    @no_show = true
   end
 end
