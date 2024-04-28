@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     end
     resources :tips, only: %i[new create edit update]
   end
+
   get "presentes", to: "gifts#index", as: :presentes
   get "presentes/:gift_id/comprar", to: "orders#new", as: :buy_gift
+  get "presentes/:gift_id/comprar/:order_id/checkout/", to: "payments#new", as: :purchase_gift
   get "/dashboard", to: "users#show", as: :user_profile
+
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
 end

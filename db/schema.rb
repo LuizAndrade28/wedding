@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_19_013446) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_22_155838) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,7 +72,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_013446) do
     t.bigint "gift_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "state"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "checkout_session_id"
     t.index ["gift_id"], name: "index_orders_on_gift_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating"
+    t.bigint "user_id", null: false
+    t.bigint "wedding_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["wedding_id"], name: "index_reviews_on_wedding_id"
   end
 
   create_table "tips", force: :cascade do |t|
@@ -123,6 +137,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_013446) do
   add_foreign_key "guests", "guests", column: "primary_guest_id"
   add_foreign_key "guests", "weddings"
   add_foreign_key "orders", "gifts"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "weddings"
   add_foreign_key "tips", "weddings"
   add_foreign_key "weddings", "users"
 end
