@@ -10,4 +10,6 @@ class Gift < ApplicationRecord
   validates :category, presence: true
   validates :value, presence: true
   validates :photo, presence: true
+
+  scope :with_positive_quota, ->(wedding) { where(wedding: wedding, total_quota: 1..Float::INFINITY) }
 end

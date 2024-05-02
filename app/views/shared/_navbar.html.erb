@@ -17,7 +17,7 @@
           <div class="dropdown-menu dropdown-menu-end bg-white mx-3 rounded-4" aria-labelledby="navbarDropdown">
             <%= link_to "Dashboard", user_profile_path(current_user), class: "dropdown-item rounded-4" %>
             <div class="border-bottom-purp"></div>
-            <%= link_to "Editar cadastro", edit_user_registration_path(current_user), class: "dropdown-item rounded-4" %>
+            <%# link_to "Editar cadastro", edit_user_registration_path(current_user), class: "dropdown-item rounded-4" %>
             <div class="border-bottom-purp"></div>
             <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item rounded-4" %>
           </div>

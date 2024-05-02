@@ -1,10 +1,10 @@
 class GiftsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
-  before_action :set_wedding, only: %i[delete_all create edit update new]
+  before_action :set_wedding, only: %i[create edit update new]
 
   def index
     @wedding = Wedding.last
-    @gifts = Gift.where(wedding: @wedding)
+    @gifts = Gift.with_positive_quota(@wedding)
     case params[:sort_by]
     when "value_asc"
       @gifts = @gifts.order(value_cents: :asc)
@@ -25,12 +25,6 @@ class GiftsController < ApplicationController
 
   def new
     @gift = Gift.new
-  end
-
-  def delete_all
-    @gifts = Gift.where(wedding: @wedding)
-    @gifts.each(&:destroy)
-    redirect_to user_profile_path(current_user)
   end
 
   def create
@@ -58,12 +52,6 @@ class GiftsController < ApplicationController
         error: "Por favor, verifique se preencheu corretamente todos os campos."
       }
     end
-  end
-
-  def destroy
-    @gift = Gift.find(params[:id])
-    @gift.destroy
-    redirect_to user_profile_path(current_user)
   end
 
   private

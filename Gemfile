@@ -54,8 +54,9 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails", require: false
 gem "rails-i18n"
 gem "geocoder"
-gem "pundit"
 gem "money-rails"
+gem "stripe"
+gem "stripe_event"
 
 group :development, :test do
   gem "dotenv-rails"
@@ -81,5 +82,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem 'scout_apm'

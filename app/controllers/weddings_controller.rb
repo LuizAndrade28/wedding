@@ -1,8 +1,5 @@
-# require "memory-profiler"
-# require "stackprof"
-
 class WeddingsController < ApplicationController
-  before_action :set_wedding, only: %i[edit update destroy]
+  before_action :set_wedding, only: %i[edit update]
 
   def new
     @wedding = Wedding.new
@@ -20,20 +17,12 @@ class WeddingsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @wedding.update(wedding_params)
       redirect_to new_wedding_tip_path(@wedding)
     else
       render :edit, status: :unprocessable_entity
     end
-  end
-
-  def destroy
-    @wedding.destroy
-    redirect_to user_profile_path(current_user)
   end
 
   private

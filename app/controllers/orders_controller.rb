@@ -5,25 +5,39 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @gift = Gift.find_by(id: params[:gift_id])
-    if @gift.nil?
-      flash[:alert] = "O presente não foi encontrado."
-      redirect_to root_path
-    end
   end
 
   def create
-    @order = Order.new(order_params)
     @gift = Gift.find_by(id: params[:gift_id])
-    if @gift.nil?
-      flash[:alert] = "O presente não foi encontrado."
-      redirect_to root_path
-    end
+    @order = Order.new(order_params)
+    @order.amount = @gift.value
+    @order.state = 'pending'
     @order.gift = @gift
+
     if @order.save
-      @quotes = @gift.total_quota - 1
-      @gift.update!(total_quota: @quotes)
       flash[:notice] = "Obrigado(a) pela sua contribuição!"
-      redirect_to root_path
+      redirect_to purchase_gift_path(@gift.id, @order.id)
+    # if @order.save
+    #   session = Stripe::Checkout::Session.create({
+    #     line_items: [{
+    #       price_data: {
+    #         currency: 'brl',
+    #         product_data: {
+    #           name: @gift.title,
+    #           images: [@gift.photo.key]
+    #         },
+    #         unit_amount: @gift.value_cents,
+    #       },
+    #       quantity: 1,
+    #     }],
+    #     mode: 'payment',
+    #     # These placeholder URLs will be replaced in a following step.
+    #     success_url: root_url,
+    #     cancel_url: root_url
+    #     # locale: 'pt-BR'
+    #   })
+    #   @order.update(checkout_session_id: session.id)
+    #   redirect_to purchase_gift_path(@gift.id, @order.id)
     else
       flash[:alert] = "A compra não foi realizada! Tente novamente."
       render :new
