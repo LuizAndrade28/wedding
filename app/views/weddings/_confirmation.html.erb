@@ -29,16 +29,22 @@
           <div class="errorMessages" data-attendance-target="errorMessages">
             <!-- Adiciona o elemento para exibir as mensagens de erro -->
           </div>
-          <div class="mt-2 d-flex justify-content-center">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input radio-wed" type="radio" name="attendance" id="confirmAttendanceRadio" value="confirm"
-              data-action="click->attendance#radioSelection">
-              <label class="form-check-label" for="confirmAttendanceRadio">Confirmar Presença</label>
+          <div class="mt-2 d-flex flex-column justify-content-center align-items-center">
+            <div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input radio-wed" type="radio" name="attendance" id="confirmAttendanceRadio" value="confirm"
+                data-action="click->attendance#radioSelection">
+                <label class="form-check-label" for="confirmAttendanceRadio">Confirmar Presença</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input radio-wed" type="radio" name="attendance" id="declineAttendanceRadio" value="decline"
+                data-action="click->attendance#radioSelection">
+                <label class="form-check-label" for="declineAttendanceRadio">Não Irei Comparecer</label>
+              </div>
             </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input radio-wed" type="radio" name="attendance" id="declineAttendanceRadio" value="decline"
-              data-action="click->attendance#radioSelection">
-              <label class="form-check-label" for="declineAttendanceRadio">Não Irei Comparecer</label>
+            <div class="d-none form-check form-check-inline" data-attendance-target="guestCompanions">
+              <!-- Div para exibir companions -->
+              <hr>
             </div>
           </div>
           <div class="d-flex justify-content-center mt-2">

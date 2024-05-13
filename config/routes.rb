@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root to: "pages#home"
   get "up" => "rails/health#show", as: :rails_health_check
+
   resources :weddings, only: %i[new create] do
     resources :guests, only: %i[new create update]
     resources :gifts, only: %i[new create] do
@@ -15,5 +17,5 @@ Rails.application.routes.draw do
   get "presentes/:gift_id/comprar/:order_id/checkout/", to: "payments#new", as: :purchase_gift
   get "/dashboard", to: "users#show", as: :user_profile
 
-  mount StripeEvent::Engine, at: '/stripe-webhooks'
+  # mount StripeEvent::Engine, at: '/stripe-webhooks'
 end

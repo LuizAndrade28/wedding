@@ -55,8 +55,6 @@ gem "sassc-rails", require: false
 gem "rails-i18n"
 gem "geocoder"
 gem "money-rails"
-gem "stripe"
-gem "stripe_event"
 
 group :development, :test do
   gem "dotenv-rails"
