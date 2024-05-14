@@ -1,13 +1,15 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["formGuestElement", "guestForm", "guestPhone", "errorMessages", "guestPhoneError", "successMessages", "confirmationMessages", "confirmationMessage", "divSubmit", "input"];
+  static targets = ["formGuestElement", "guestForm", "guestPhone", "errorMessages", "guestPhoneError", "successMessages", "confirmationMessages", "confirmationMessage", "divSubmit", "input", "guestCompanions", "guestCompanionsAccept", "guestCompanionsDecline"];
   static values = { guests: String };
 
   connect() {
     // Oculta mensagens de sucesso e mensagens de confirmação
     this.successMessagesTarget.classList.add('d-none');
     this.confirmationMessagesTarget.classList.add('d-none');
+    // Mostra a lista de todos os guests
+    // console.log(this.guestsValue);
   }
 
   guestName(event) {
@@ -20,19 +22,76 @@ export default class extends Controller {
 
     // Procura o convidado na lista de convidados
     const guests = JSON.parse(this.guestsValue);
-    const filteredGuests = guests.filter(guest => guest.full_name.toUpperCase().startsWith(guestName.toUpperCase()) && guest.confirmed === null);
+    const filteredGuests = guests.filter(guest => guest.full_name.toUpperCase().startsWith(guestName.toUpperCase()) && guest.confirmed === null && guest.primary_guest_id === null);
 
     // Verifica se foram encontrados convidados
     if (filteredGuests.length === 1) {
       // Se houver apenas um convidado encontrado, prossiga como antes
       const foundGuest = filteredGuests[0];
-      console.log('Convidado encontrado:', foundGuest);
+      // console.log('Convidado encontrado:', foundGuest);
       if (foundGuest.confirmed === null) {
         // Oculta o formulário de busca e mostra o formulário de confirmação
         this.formGuestElementTarget.classList.add('d-none');
         this.guestFormTarget.classList.remove('d-none');
         // Armazena os dados do convidado para verificação posterior
         this.foundGuest = foundGuest;
+        // Mostra os acompanhantes do convidado
+        const foundCompanions = guests.filter(g => g.primary_guest_id === foundGuest.id);
+
+        // Adiciona os acompanhantes do convidado ao formulário
+        if (foundCompanions.length > 0) {
+          this.guestCompanionsTarget.classList.remove('d-none');
+          foundCompanions.forEach(companion => {
+
+            // Adiciona div para inserir elementos de confirmação
+            const companionElementDivConfirm = document.createElement('div');
+            companionElementDivConfirm.classList.add('form-check', 'form-check-inline');
+            companionElementDivConfirm.setAttribute('data-target', 'guestCompanionsAccept');
+            this.guestCompanionsTarget.appendChild(companionElementDivConfirm);
+
+            // Adiciona o nome do acompanhante
+            const companionElement = document.createElement('p');
+            companionElement.textContent = companion.full_name;
+            companionElement.classList.add('m-0', 'p-0');
+            companionElementDivConfirm.appendChild(companionElement);
+
+            // Adiciona o radio button para confirmar a presença
+            const companionElementConfirmation = document.createElement('input');
+            companionElementConfirmation.type = 'radio';
+            companionElementConfirmation.name = 'attendance' + companion.id;
+            companionElementConfirmation.value = 'confirm';
+            companionElementConfirmation.dataset.companionId = companion.id;
+            companionElementConfirmation.classList.add('form-check-input', 'radio-wed');
+            companionElementDivConfirm.appendChild(companionElementConfirmation);
+
+            // Adiciona o label para o radio button de confirmação
+            const companionElementConfirmationLabel = document.createElement('label');
+            companionElementConfirmationLabel.textContent = 'Confirmar presença';
+            companionElementConfirmationLabel.classList.add('form-check-label');
+            companionElementDivConfirm.appendChild(companionElementConfirmationLabel);
+
+            // Adiciona div para inserir elementos de recusa
+            const companionElementDivDecline = document.createElement('div');
+            companionElementDivDecline.classList.add('form-check', 'form-check-inline');
+            companionElementDivDecline.setAttribute('data-target', 'guestCompanionsDecline');
+            this.guestCompanionsTarget.appendChild(companionElementDivDecline);
+
+            // Adiciona o radio button para declinar a presença
+            const companionElementDecline = document.createElement('input');
+            companionElementDecline.type = 'radio';
+            companionElementDecline.name = 'attendance' + companion.id;
+            companionElementDecline.value = 'decline';
+            companionElementDecline.dataset.companionId = companion.id;
+            companionElementDecline.classList.add('form-check-input', 'radio-wed');
+            companionElementDivDecline.appendChild(companionElementDecline);
+
+            // Adiciona o label para o radio button de recusa
+            const companionElementDeclineLabel = document.createElement('label');
+            companionElementDeclineLabel.textContent = 'Não irá comparecer';
+            companionElementDeclineLabel.classList.add('form-check-label');
+            companionElementDivDecline.appendChild(companionElementDeclineLabel);
+          });
+        }
         // Esconde a mensagem de erro
         this.hideError();
       }
@@ -40,11 +99,11 @@ export default class extends Controller {
       // Se houver mais de um convidado encontrado, exiba uma lista para seleção
       this.inputTarget.classList.add("d-none");
       this.divSubmitTarget.classList.add("d-none");
-      console.log('Vários convidados encontrados:', filteredGuests);
+      // console.log('Vários convidados encontrados:', filteredGuests);
       // Exibe a lista de convidados na tela para seleção
       this.showGuestSelection(filteredGuests);
     } else {
-      console.log('Nenhum convidado encontrado');
+      // console.log('Nenhum convidado encontrado');
       // Trate o caso em que nenhum convidado foi encontrado
     }
   }
@@ -93,32 +152,23 @@ export default class extends Controller {
   async submitAttendance() {
     const phone = this.guestPhoneTarget.value;
     const selectedValue = this.element.querySelector('input[name="attendance"]:checked').value;
-
-    // Obtém a mensagem digitada pelo convidado
     const message = this.confirmationMessageTarget.value;
 
-    // Verifica se o email e o telefone digitados correspondem aos do convidado encontrado
-    if ( phone !== this.foundGuest.phone) {
+    if (phone !== this.foundGuest.phone) {
       this.showError('Telefone incorreto');
       return;
     }
 
-    // Obter o wedding_id e id do convidado
     const weddingId = this.foundGuest.wedding_id;
     const guestId = this.foundGuest.id;
-
-    // Construir o URL da rota de atualização do convidado
     const url = `/weddings/${weddingId}/guests/${guestId}`;
-
-    // Obter o token CSRF do meta tag
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    // Realizar a requisição AJAX para atualizar os atributos confirmed e confirmation_message do convidado
-    const response = await fetch(url, {
+    const guestResponse = await fetch(url, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'X-CSRF-Token': csrfToken // Inclui o token CSRF no cabeçalho da requisição
+        'X-CSRF-Token': csrfToken
       },
       body: JSON.stringify({
         confirmed: selectedValue === 'confirm',
@@ -126,7 +176,7 @@ export default class extends Controller {
       }),
     });
 
-    if (response.ok) {
+    if (guestResponse.ok) {
       // Se a requisição foi bem-sucedida, faça o que for necessário, como mostrar uma mensagem de sucesso
       // Esconde a mensagem de erro e mostra a mensagem de sucesso ou confirmação
       this.hideError();
@@ -138,6 +188,35 @@ export default class extends Controller {
     } else {
       // Se a requisição falhar
     }
+
+    // Atualização dos acompanhantes
+    await this.updateCompanions(weddingId, csrfToken);
+  }
+
+  async updateCompanions(weddingId, csrfToken) {
+    const companions = this.element.querySelectorAll('input[name^="attendance"]:checked:not([value=""])');
+
+    companions.forEach(async companion => {
+      const companionId = companion.dataset.companionId;
+      if (companionId !== undefined) {
+        const companionUrl = `/weddings/${weddingId}/guests/${companionId}`;
+
+        const companionResponse = await fetch(companionUrl, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken
+          },
+          body: JSON.stringify({
+            confirmed: companion.value === 'confirm',
+          }),
+        });
+
+        if (!companionResponse.ok) {
+          // Lidar com o erro na atualização do acompanhante, se necessário
+        }
+      }
+    });
   }
 
   showError(message) {

@@ -35,7 +35,7 @@
 }
 
 .messages-width {
-  width: 99vw !important;
+  width: 100% !important;
   background-color: #e2e3e5b8;
 }
 
@@ -149,7 +149,7 @@
 // Banner
 #wedding-section-banner {
   height: 100vh;
-  width: 99vw;
+  width: 100%;
   background-image: url('wedding/banner');
   background-attachment: fixed;
   background-position: center;
