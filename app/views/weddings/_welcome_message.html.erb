@@ -1,7 +1,8 @@
 <div>
-  <h1 class="text-center wed-message-title">Sejam bem-vindos!<br>Aqui começa a história do nosso grande dia!</h1>
+  <h1 class="text-center title">Sejam bem-vindos!</h1>,
+  <p class="text-center wed-message-subtitle pt-0">Aqui começa a história do nosso grande dia...</p>
 </div>
 <div class="text-center m-5">
   <%= cl_image_tag(@wedding.couple_photo.key, height: 400, width: 300, crop: :fill, class: "rounded-4 shadow-sm") %>
 </div>
-<h5 id="wed-welcome-message-sizing" class="text-center w-75"><%= @wedding.welcome_message %></h5>
+<p id="wed-welcome-message-sizing" class="text-center w-75"><%= @wedding.welcome_message %></p>

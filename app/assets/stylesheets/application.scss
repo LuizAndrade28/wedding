@@ -32,7 +32,7 @@ body {
 
 .body-content {
   min-height: 90vh;
-  
+
 }
 
 h1,
@@ -41,7 +41,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "protest-riot";
+  font-family: $headers-font;
   font-weight: bolder;
   color: #3a383a;
 }
