@@ -1,6 +1,8 @@
 <% if @tips != [] %>
-  <% @tips.each do |tip| %>
-    <h2 id="dicas" class="wed-message-title mt-4"><%= tip.title %></h2>
-    <p class="text-center w-75 wed-messages-sizing m-0"><%= tip.content %></p>
-  <% end %>
+  <div class="d-flex flex-column align-items-center" id="dicas">
+    <% @tips.each do |tip| %>
+      <h2 id="dicas" class="wed-message-title mt-4"><%= tip.title %></h2>
+      <p class="text-center w-75 wed-messages-sizing m-0"><%= tip.content %></p>
+    <% end %>
+  </div>
 <% end %>

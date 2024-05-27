@@ -1,1 +1,15 @@
 // Specific CSS for your home-page
+.banner {
+  font-family: $headers-font;
+}
+
+.banner-sub {
+  font-family: $cursive-font;
+  font-size: 4em;
+}
+
+.title {
+  font-family: $cursive-font;
+  font-size: 5.5em;
+  font-weight: bolder;
+}
